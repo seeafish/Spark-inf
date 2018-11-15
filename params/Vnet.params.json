@@ -8,9 +8,6 @@
         "location": {
             "value": "eastus"
         },
-        "resourceGroup": {
-            "value": "dogtechtest-sg"
-        },
         "addressPrefix": {
             "value": "10.1.0.0/16"
         },
