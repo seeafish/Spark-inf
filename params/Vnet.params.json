@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "dogtechtest-sg-sparkvnet"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "resourceGroup": {
+            "value": "dogtest-sg"
+        },
+        "addressPrefix": {
+            "value": "10.1.0.0/16"
+        },
+        "dmzSubnetName": {
+            "value": "dmz"
+        },
+        "dmzSubnetAddressPrefix": {
+            "value": "10.1.0.0/24"
+        },
+        "privateSubnetName": {
+            "value": "private"
+        },
+        "privateSubnetAddressPrefix": {
+            "value": "10.1.1.0/24"
+        },
+        "enableDdosProtection": {
+            "value": false
+        }
+    }
+}

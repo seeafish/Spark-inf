@@ -1,0 +1,63 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "string"
+        },
+        "resourceGroup": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "addressPrefix": {
+            "type": "string"
+        },
+        "dmzSubnetName": {
+            "type": "string"
+        },
+        "dmzSubnetAddressPrefix": {
+            "type": "string"
+        },
+        "privateSubnetName": {
+            "type": "string"
+        },
+        "privateSubnetAddressPrefix": {
+            "type": "string"
+        },
+        "enableDdosProtection": {
+            "type": "bool"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2018-08-01",
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "location": "[parameters('location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[parameters('addressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[parameters('dmzSubnetName')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('dmzSubnetAddressPrefix')]"
+                        }
+                    },
+                    {
+                        "name": "[parameters('privateSubnetName')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('privateSubnetAddressPrefix')]"
+                        }
+                    }
+                ],
+                "enableDdosProtection": "[parameters('enableDdosProtection')]"
+            }
+        }
+    ]
+}
