@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Spark-Inf</id>
+        <version>1.0.0</version>
+        <description>Infrastructure code for Spark</description>
+        <authors>Sia Gholami</authors>
+    </metadata>
+    <files>
+        <file src="params\*.json" target="content\params">
+        <file src="templates\*.json" target="content\templates">
+    </files>
+</package>
