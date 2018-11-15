@@ -15,7 +15,58 @@
             "value": false
         },
         "accessPolicies": {
-            "value": [ ]
+            "value": [
+                {
+                    "tenantId": "1044dc98-79f8-4c28-a635-a7ea169c0589",
+                    "objectId": "584c9d74-3919-4e45-a5e0-04dcf1d33ff2",
+                    "permissions": {
+                        "keys": [
+                            "encrypt",
+                            "decrypt",
+                            "wrapKey",
+                            "unwrapKey",
+                            "sign",
+                            "verify",
+                            "get",
+                            "list",
+                            "create",
+                            "update",
+                            "import",
+                            "delete",
+                            "backup",
+                            "restore",
+                            "recover",
+                            "purge"
+                        ],
+                        "secrets": [
+                            "get",
+                            "list",
+                            "set",
+                            "delete",
+                            "backup",
+                            "restore",
+                            "recover",
+                            "purge"
+                        ],
+                        "certificates": [
+                            "get",
+                            "list",
+                            "delete",
+                            "create",
+                            "import",
+                            "update",
+                            "managecontacts",
+                            "getissuers",
+                            "listissuers",
+                            "setissuers",
+                            "deleteissuers",
+                            "manageissuers",
+                            "recover",
+                            "purge"
+                        ]
+                    }
+                }
+            ]
         },
         "tags": {
             "value": {
