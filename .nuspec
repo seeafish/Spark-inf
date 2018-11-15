@@ -7,7 +7,7 @@
         <authors>Sia Gholami</authors>
     </metadata>
     <files>
-        <file src="params\*.json" target="content\params">
-        <file src="templates\*.json" target="content\templates">
+        <file src="params\*.json" target="content\params" />
+        <file src="templates\*.json" target="content\templates" />
     </files>
 </package>
