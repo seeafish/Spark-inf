@@ -1,0 +1,77 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "keyVaultName": {
+        "metadata": { "description": "The name for the keyvault" },
+        "type": "string"
+      },
+      "tenantId": {
+        "metadata": { "description": "Tenant Id of the subscription. Get using Get-AzureRmSubscription cmdlet or Get Subscription API" },
+        "type": "string",
+        "defaultValue": "[subscription().tenantId]"
+      },
+      "skuName": {
+        "metadata": { "description": "SKU for the vault" },
+        "type": "string",
+        "defaultValue": "Standard",
+        "allowedValues": [
+          "Standard",
+          "Premium"
+        ]
+      },
+      "accessPolicies": {
+        "metadata": { "description": "Access policies object {\"tenantId\":\"\",\"objectId\":\"\",\"permissions\":{\"keys\":[\"\"],\"secrets\":[\"\"]}}" },
+        "type": "array",
+        "defaultValue": "{}"
+      },
+      "enabledForDeployment": {
+        "metadata": { "description": "Specifies if the vault is enabled for VM or Service Fabric deployment" },
+        "type": "bool",
+        "defaultValue": false
+      },
+      "enabledForTemplateDeployment": {
+        "metadata": { "description": "Specifies if the vault is enabled for ARM template deployment" },
+        "type": "bool",
+        "defaultValue": false
+      },
+      "enabledForDiskEncryption": {
+        "metadata": { "description": "Specifies if the vault is enabled for volume encryption" },
+        "type": "bool",
+        "defaultValue": false
+      },
+      "tags": {
+        "metadata": { "description": "Tags" },
+        "type": "object",
+        "defaultValue": {
+          "User": ""
+        }
+      }
+    },
+    "variables": {
+      "apiVersion": "2016-10-01"
+    },
+    "resources": [
+      {
+        "type": "Microsoft.KeyVault/vaults",
+        "name": "[parameters('keyVaultName')]",
+        "apiVersion": "[variables('apiVersion')]",
+        "location": "[resourceGroup().location]",
+        "tags": "[parameters('tags')]",
+        "properties": {
+          "tenantId": "[parameters('tenantId')]",
+          "sku": {
+            "name": "[parameters('skuName')]",
+            "family": "A"
+          },
+          "accessPolicies": "[parameters('accessPolicies')]",
+          "enabledForDeployment": "[parameters('enabledForDeployment')]",
+          "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
+          "enabledForDiskEncryption": "[parameters('enabledForDiskEncryption')]"
+        },
+        "dependsOn": []
+      }
+    ],
+    "outputs": {
+    }
+}
