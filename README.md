@@ -14,7 +14,7 @@ Using Azure CLI
 Running Order
 -------------
 
-All templates can be run in the same Resource Group.
+All templates should be run in the same Resource Group.
 
 1. Vnet
 2. Keyvault
