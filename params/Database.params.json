@@ -1,0 +1,53 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "administratorLogin": {
+            "value": "techtest"
+        },
+        "administratorLoginPassword" : {
+            "reference": {
+              "keyVault": {
+                "id": "/subscriptions/99a32bf6-1fd3-47a9-a9a2-4413d6d181c0/resourceGroups/dogtechtest-sg/providers/Microsoft.KeyVault/vaults/dogtechtest-sg"
+              },
+              "secretName": "adminPassword"
+            }
+        },
+        "collation": {
+            "value": "SQL_Latin1_General_CP1_CI_AS"
+        },
+        "databaseName": {
+            "value": "dogtechtest-sg-sparkdb"
+        },
+        "tier": {
+            "value": "Standard"
+        },
+        "skuName": {
+            "value": "S0"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "maxSizeBytes": {
+            "value": 268435456000
+        },
+        "serverName": {
+            "value": "dogtechtest-sg-sparkdbserver"
+        },
+        "sampleName": {
+            "value": ""
+        },
+        "zoneRedundant": {
+            "value": false
+        },
+        "licenseType": {
+            "value": ""
+        },
+        "enableATP": {
+            "value": false
+        },
+        "allowAzureIps": {
+            "value": true
+        }
+    }
+}
