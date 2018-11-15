@@ -1,0 +1,140 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string"
+        },
+        "storageAccountName": {
+            "type": "string"
+        },
+        "accountType": {
+            "type": "string"
+        },
+        "kind": {
+            "type": "string"
+        },
+        "accessTier": {
+            "type": "string"
+        },
+        "supportsHttpsTrafficOnly": {
+            "type": "bool"
+        },
+        "networkAclsBypass": {
+            "type": "string"
+        },
+        "networkAclsDefaultAction": {
+            "type": "string"
+        },
+        "networkAclsVirtualNetworkRules": {
+            "type": "array"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "type": "Microsoft.Resources/deployments",
+            "name": "updateVirtualNetworkCreateStorageAccount",
+            "resourceGroup": "dogtechtest-sg",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {},
+                "template": {
+                    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "variables": {},
+                    "resources": [
+                        {
+                            "apiVersion": "2018-08-01",
+                            "name": "dogtechtest-sg-sparkvnet",
+                            "type": "Microsoft.Network/virtualNetworks",
+                            "location": "eastus",
+                            "properties": {
+                                "provisioningState": "Succeeded",
+                                "resourceGuid": "0ef315d4-36f7-4736-bc2f-8f7da759fcab",
+                                "addressSpace": {
+                                    "addressPrefixes": [
+                                        "10.1.0.0/16"
+                                    ]
+                                },
+                                "subnets": [
+                                    {
+                                        "name": "dmz",
+                                        "id": "/subscriptions/99a32bf6-1fd3-47a9-a9a2-4413d6d181c0/resourceGroups/dogtechtest-sg/providers/Microsoft.Network/virtualNetworks/dogtechtest-sg-sparkvnet/subnets/dmz",
+                                        "etag": "W/\"8d92d922-99ac-4813-adb5-0bd7d6e811ca\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "10.1.0.0/24",
+                                            "networkSecurityGroup": {
+                                                "id": "/subscriptions/99a32bf6-1fd3-47a9-a9a2-4413d6d181c0/resourceGroups/dogtechtest-sg/providers/Microsoft.Network/networkSecurityGroups/spark-domainnsg"
+                                            },
+                                            "ipConfigurations": [
+                                                {
+                                                    "id": "/subscriptions/99a32bf6-1fd3-47a9-a9a2-4413d6d181c0/resourceGroups/dogtechtest-sg/providers/Microsoft.Compute/virtualMachineScaleSets/spark-domain/virtualMachines/1/networkInterfaces/spark-domainNic/ipConfigurations/spark-domainIpConfig"
+                                                }
+                                            ],
+                                            "delegations": [],
+                                            "serviceEndpoints": [
+                                                {
+                                                    "service": "Microsoft.Storage"
+                                                }
+                                            ]
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    },
+                                    {
+                                        "name": "private",
+                                        "id": "/subscriptions/99a32bf6-1fd3-47a9-a9a2-4413d6d181c0/resourceGroups/dogtechtest-sg/providers/Microsoft.Network/virtualNetworks/dogtechtest-sg-sparkvnet/subnets/private",
+                                        "etag": "W/\"8d92d922-99ac-4813-adb5-0bd7d6e811ca\"",
+                                        "properties": {
+                                            "provisioningState": "Succeeded",
+                                            "addressPrefix": "10.1.1.0/24",
+                                            "delegations": [],
+                                            "serviceEndpoints": [
+                                                {
+                                                    "service": "Microsoft.Storage"
+                                                }
+                                            ]
+                                        },
+                                        "type": "Microsoft.Network/virtualNetworks/subnets"
+                                    }
+                                ],
+                                "virtualNetworkPeerings": [],
+                                "enableDdosProtection": false,
+                                "enableVmProtection": false
+                            },
+                            "tags": {}
+                        }
+                    ],
+                    "outputs": {}
+                }
+            }
+        },
+        {
+            "name": "[parameters('storageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2018-07-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "accessTier": "[parameters('accessTier')]",
+                "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
+                "networkAcls": {
+                    "bypass": "[parameters('networkAclsBypass')]",
+                    "defaultAction": "[parameters('networkAclsDefaultAction')]",
+                    "ipRules": [],
+                    "virtualNetworkRules": "[parameters('networkAclsVirtualNetworkRules')]"
+                }
+            },
+            "dependsOn": [
+                "Microsoft.Resources/deployments/updateVirtualNetworkCreateStorageAccount"
+            ],
+            "sku": {
+                "name": "[parameters('accountType')]"
+            },
+            "kind": "[parameters('kind')]"
+        }
+    ],
+    "outputs": {}
+}
