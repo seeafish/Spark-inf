@@ -1,0 +1,76 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "vmssName": {
+            "value": "spark-domain"
+        },
+        "vmSku": {
+            "value": "Standard_DS1_v2"
+        },
+        "adminUsername": {
+            "value": "techtest"
+        },
+        "instanceCount": {
+            "value": "2"
+        },
+        "singlePlacementGroup": {
+            "value": "true"
+        },
+        "priority": {
+            "value": "Regular"
+        },
+        "pipName": {
+            "value": "spark-domain-ip"
+        },
+        "pipLabel": {
+            "value": "spark-domain"
+        },
+        "ipAllocationMethod": {
+            "value": "Static"
+        },
+        "skuType": {
+            "value": "Standard"
+        },
+        "subnetId": {
+            "value": "/subscriptions/99a32bf6-1fd3-47a9-a9a2-4413d6d181c0/resourceGroups/dogtechtest-sg/providers/Microsoft.Network/virtualNetworks/dogtechtest-sg-sparkvnet/subnets/private"
+        },
+        "enableAcceleratedNetworking": {
+            "value": "false"
+        },
+        "publicIpAddressPerInstance": {
+            "value": "false"
+        },
+        "upgradeMode": {
+            "value": "Manual"
+        },
+        "image": {
+            "value": {
+                "sku": "2016-Datacenter",
+                "publisher": "MicrosoftWindowsServer",
+                "version": "latest",
+                "offer": "WindowsServer"
+            }
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                  "id": "/subscriptions/99a32bf6-1fd3-47a9-a9a2-4413d6d181c0/resourceGroups/dogtechtest-sg/providers/Microsoft.KeyVault/vaults/dogtechtest-sg"
+                },
+                "secretName": "adminPassword"
+              }
+        },
+        "vnetName": {
+            "value": "dogtechtest-sg-sparkvnet"
+        },
+        "subnetResourceGroup": {
+            "value": "dogtechtest-sg"
+        },
+        "storageAccountName": {
+            "value": "dogtechtestsgdiag"
+        }
+    }
+}
