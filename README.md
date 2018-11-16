@@ -27,6 +27,7 @@ Current issues
 --------------
 Due to time constraints, the following issues exist with the infrastructure as it stands.
 
-* The Azure Diagnostics isn't reporting memory metrics. It has a somewhat convoluted XML confiuguration. It can easily be replaced with OMS, or even NewRelic.
+* The Azure Diagnostics isn't reporting memory metrics. It has a somewhat convoluted XML confiuguration. It can easily be replaced with OMS, or even NewRelic by writing a bootstrap script during create time.
 * NSGs only at the VM level. Ideally should have some subnet level NSGs or, better still, ASGs.
 * App layer LB has a Public IP; it's meant to be a private LB.
+* Front End would preferably be using an AppGW or perhaps even be an app service.
